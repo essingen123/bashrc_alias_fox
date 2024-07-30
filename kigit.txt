@@ -17,7 +17,7 @@ set303c=y
 set303d=y
 
 # 🗑️ tags, separated by commas
-set303e=bash, alias, bashrc, terminal, scripting, productivity
+set303e=
 
 # 📝 description
 set303f=
