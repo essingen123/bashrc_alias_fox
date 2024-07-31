@@ -1,9 +1,7 @@
 #!/bin/bash
 # author: Kilian Lindberg 2024
 # co-author and inspiration: everyone & Lama
- license: MIT License
-
-# Brief description of the script's purpose and functionality
+# license: MIT License
 # This script adds and manages aliases in the shell configuration file.
 
 # Get the shell configuration file
@@ -98,8 +96,14 @@ list_aliases_from_shell_config() {
 }
 
 # Get script path and directory
-script_path=$(dirname "$0")/${0##*/}
-script_dir=$(dirname "$0")
+script_path=$(readlink -f "$0")
+script_dir=$(dirname "$script_path")
+
+# Check if script should set up aliases for itself
+aliases=("a" "fox_alias" "alias_fox" "bashrc_alias_fox")
+for alias in "${aliases[@]}"; do
+    add_alias_to_shell_config "$alias" "$script_path"
+done
 
 # Check if script is called with arguments
 if [ $# -eq 0 ]; then
@@ -110,15 +114,6 @@ if [ $# -eq 0 ]; then
     echo ""
     list_aliases_from_shell_config
     exit 0
-fi
-
-# Check if script should set up an alias for itself
-if ! grep -qF "alias a='$0'" "$shell_config_file"; then
-    read -p "Do you want to add an alias 'a' for this script? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        add_alias_to_shell_config "a" "$0"
-    fi
 fi
 
 # Get alias name and command
