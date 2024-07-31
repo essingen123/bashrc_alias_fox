@@ -17,10 +17,10 @@ set303c=y
 set303d=y
 
 # 🗑️ tags, separated by commas
-set303e=
+set303e=bash, alias, bashrc, terminal, scripting, productivity
 
 # 📝 description
-set303f=
+set303f=A bash script to create and manage aliases in your .bashrc file.
 
 # 🌐 website URL
 set303g=
